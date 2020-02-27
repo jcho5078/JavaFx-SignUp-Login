@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/" 
+            stylesheets="@members.css" prefHeight="850" prefWidth="1000" fx:id="login"
+             style="-fx-background-color: #eaeaea;"
+            fx:controller="app.MembersController">
+	<children>
+	  <Label id="subject" layoutX="320" layoutY="150" text="members"/>
+	  <Label layoutX="342" layoutY="286" text="Name"/>
+	  <Label layoutX="342" layoutY="326" text="Id"/>
+	  <Label layoutX="342" layoutY="366" text="Pwd"/>
+	  <TextField fx:id="name" layoutX="420" layoutY="286" />
+	  <TextField fx:id="id" layoutX="420" layoutY="324" />
+	  <PasswordField fx:id="pwd" layoutX="420" layoutY="362" />
+	  <Button fx:id="signup" layoutX="342" layoutY="406" text="SignUp"/>
+	  <Button fx:id="cancelBtn" layoutX="510" layoutY="406" text="cancel"/>	  
+	</children>
+</AnchorPane>
+

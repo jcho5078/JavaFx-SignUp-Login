@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<StackPane xmlns:fx="http://javafx.com/fxml/" 
+            stylesheets="@firstPage.css" prefHeight="850" prefWidth="1000"
+            fx:controller="app.FirstController">
+	<children>
+	<AnchorPane>
+	  <Label id="subject" layoutX="320" layoutY="150" text="JavaFX"/>
+	  <Label layoutX="342" layoutY="326" text="Id"/>
+	  <Label layoutX="342" layoutY="366" text="Pwd"/>
+	  <TextField fx:id="id" layoutX="420" layoutY="324" />
+	  <PasswordField fx:id="pwd" layoutX="420" layoutY="362" />
+	  <Button fx:id="membersBtn" layoutX="342" layoutY="406" text="SignUp"/>
+	  <Button fx:id="login" layoutX="437" layoutY="406" text="login"/>
+	  <Button fx:id="exit" layoutX="510" layoutY="406" text="exit" onAction="#handleBtnAction"/>	
+	  </AnchorPane>  
+	</children>
+</StackPane>
+
