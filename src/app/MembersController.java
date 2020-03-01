@@ -50,7 +50,7 @@ public class MembersController implements Initializable{
 		  String dbId = "root";
 		  // MySQL 계정 비밀번호
 		  String dbPw = "1234";	  
-		  Connection conn = null;
+		  Connection con = null;
 		  PreparedStatement pstmt = null;
 		  
 		  String sql = "";
@@ -62,10 +62,10 @@ public class MembersController implements Initializable{
 		  try {
 		   Class.forName("com.mysql.jdbc.Driver");
 		   // 디비 연결
-		   conn = DriverManager.getConnection(jdbcUrl, dbId, dbPw);	     
+		   con = DriverManager.getConnection(jdbcUrl, dbId, dbPw);	     
 		     
 		     sql = "insert into signup values(?,?,?)";
-		     pstmt = conn.prepareStatement(sql);
+		     pstmt = con.prepareStatement(sql);
 		     pstmt.setString(1, name);
 		     pstmt.setString(2, id);
 		     pstmt.setString(3, pwd);
@@ -76,7 +76,7 @@ public class MembersController implements Initializable{
 		   e.printStackTrace();
 		  } finally{
 		   if(pstmt!=null) try{pstmt.close();}catch(SQLException ex){}
-		   if(conn!=null) try{conn.close();}catch(SQLException ex){}
+		   if(con!=null) try{con.close();}catch(SQLException ex){}
 		  }
 		  StackPane root = (StackPane) cancelBtn.getScene().getRoot();
 			root.getChildren().remove(login);
