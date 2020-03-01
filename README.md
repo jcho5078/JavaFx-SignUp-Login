@@ -9,3 +9,5 @@
 
 <h3>회원가입 완료 후 DB 확인.<br>
 <img src="https://user-images.githubusercontent.com/60742556/75456452-e4c49180-59bd-11ea-95cf-750c24ee4cc9.PNG"><br>
+
+로그인 기능 미구현. 자바 FX에서는 서블릿처럼 getRequestParameter 메서드가 없어서 텍스트를 직접 가져오는 방식으로 구현해야 할듯.<br>
