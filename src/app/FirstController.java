@@ -1,11 +1,12 @@
 package app;
 
-import java.awt.Label;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
-
-import javax.security.auth.login.LoginContext;
-
+import javafx.scene.control.TextField;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,8 +17,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
+import javafx.scene.control.*;
 
 public class FirstController implements Initializable{
     @FXML private TextField id;
@@ -27,9 +28,14 @@ public class FirstController implements Initializable{
     @FXML private Button exit;
     @FXML private Label success;
     
-    FxDAO dao = new FxDAO();
-    String uId = id.getText();
-    String uPwd = pwd.getText();
+    private Connection con;
+	private PreparedStatement pstmt;
+	private ResultSet rs;
+    String uId=null;
+    String uPwd=null;
+    String jdbcUrl = "jdbc:mysql://localhost:3306/firdb";
+	String dbId = "root";// MySQL 계정
+	String dbPw = "1234";// MySQL 계정 비밀번호
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -41,8 +47,28 @@ public class FirstController implements Initializable{
 	private void LoginAction(ActionEvent event) {//로그인 함수.
 		// TODO Auto-generated method stub
 		try {
-			if(id != null && pwd != null) {
-				dao.Login();
+			uId = id.getText();
+		    uPwd = pwd.getText();
+			if(id.getText().length() != 0 && pwd.getText().length() != 0) {//fx 텍스트 필드에서 getText()가 Null을 인식을 못해서, length()로 길이가 0이면 null로 취급.
+				this.uId = id.getText();
+				this.uPwd = pwd.getText();
+				
+				Class.forName("com.mysql.jdbc.Driver");
+				con = DriverManager.getConnection(jdbcUrl, dbId, dbPw);
+				String sql="select * from signup where id = ? and pw = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, uId);
+				pstmt.setString(2, uPwd);
+				rs = pstmt.executeQuery();//해당 쿼리문 DB로 전송
+				if(rs.next()) {
+					if(rs.getString("id").equals(uId) && rs.getString("pw").equals(uPwd)) {
+						System.out.println(rs.getString("name"));
+						success.setText(rs.getString("name") +" 님 로그인을 환영합니다.");//first.fxml파일에서 id를 fx:id로 인식을 못해서 오류발생.
+					}
+				}
+				rs.close();
+				pstmt.close();
+				con.close();
 			}else {
 				Alert alert = new Alert(AlertType.WARNING);
 				alert.setTitle("Warning Dialog");
@@ -52,9 +78,9 @@ public class FirstController implements Initializable{
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+			System.out.println("로그인 함수 오류.");
 		}
 	}
-
 
 	public void membersAction(ActionEvent event){
 		try{

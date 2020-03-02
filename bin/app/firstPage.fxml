@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane prefHeight="850" prefWidth="1000" stylesheets="@firstPage.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="app.FirstController">
+<StackPane prefHeight="850" prefWidth="1000" stylesheets="@firstPage.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.FirstController">
 	<children>
 	<AnchorPane>
 	  <Label id="subject" layoutX="320" layoutY="150" text="JavaFX" />
@@ -19,11 +19,10 @@
 	  <Button fx:id="membersBtn" layoutX="342" layoutY="406" text="SignUp" />
 	  <Button fx:id="login" layoutX="437" layoutY="406" text="login" />
 	  <Button fx:id="exit" layoutX="510" layoutY="406" onAction="#handleBtnAction" text="exit" />
-         <Label id="success" alignment="CENTER" layoutX="339.0" layoutY="227.0" prefHeight="50.0" prefWidth="226.0">
+	  <Label fx:id="success" layoutX="233.0" layoutY="229.0" prefHeight="71.0" prefWidth="449.0">
             <font>
-               <Font size="24.0" />
-            </font>
-         </Label>	
+               <Font size="25.0" />
+            </font></Label>
 	  </AnchorPane>  
 	</children>
 </StackPane>
